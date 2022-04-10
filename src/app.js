@@ -9,7 +9,6 @@ const app = express();
 app.use(compression());
 app.use(express.json());
 
-
 app.use(router);
 
 const port = options.port;
