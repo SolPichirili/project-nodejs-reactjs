@@ -13,14 +13,14 @@ class FsContainer {
             let elements = [];
 
             if (content === '') {
-                element.id = String(1);
+                element._id = String(1);
                 element.timeStamp = Date.now();
                 elements.push(element);
             } else {
                 const list = JSON.parse(content)
 
-                element.id = String(list.length + 1);
-                element.timestamp = Date.now;
+                element._id = String(list.length + 1);
+                element.timestamp = Date.now();
                 list.push(element);
                 elements = list;
             }
@@ -134,15 +134,13 @@ class FsContainer {
 
     async addProductById(cartId, product) {
         try {
-            const content = await fs.promises.readFile(this.file, 'utf-8');
-            const list = JSON.parse(content);
-            const cart = list.find(c => c._id === cartId);
-            const productsList = cart.products;
-
-            if (!productsList) {
-                productsList = [];
+            const cart = await this.getById(cartId);
+            
+            if (!cart.products) {
+                cart.products = [];
             }
 
+            const productsList = cart.products;
             const isInCart = productsList.find(p => p._id === product._id);
 
             if (isInCart) {
@@ -160,9 +158,7 @@ class FsContainer {
 
     async deleteProductFromCart(cartId, productId) {
         try {
-            const content = await fs.promises.readFile(this.file, 'utf-8');
-            const list = JSON.parse(content);
-            const cart = list.find(c => c._id === cartId);
+            const cart = await this.getById(cartId)
             const productsList = cart.products;
 
             if (!productsList) {

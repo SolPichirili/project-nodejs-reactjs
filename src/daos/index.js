@@ -5,7 +5,7 @@ import FsProductsDao from './products/fsProducts.js';
 import FsUsersDao from './users/fsUsers.js';
 
 class PersistenceFactory {
-    getPersistanceMethod(pers) {
+    getPersistenceMethod(pers) {
         switch (pers) {
 
             case 'fs':

@@ -1,0 +1,13 @@
+[
+  {
+    "name": "torta matilda",
+    "description": "Torta con chocolate y dulce de leche.",
+    "code": 303,
+    "photo": "https://www.clarin.com/img/2019/06/29/ah1D7AiQR_340x340__1.jpg",
+    "price": "4000",
+    "stock": 5,
+    "category": "dulce",
+    "_id": "1",
+    "quantity": "0"
+  }
+]
